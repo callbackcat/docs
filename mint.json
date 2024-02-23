@@ -24,7 +24,7 @@
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "quickstart", "development"]
+      "pages": ["introduction", "development"]
     },
     {
       "group": "API Documentation",
