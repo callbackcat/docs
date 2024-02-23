@@ -38,7 +38,9 @@
       "group": "Endpoint Examples",
       "pages": [
         "api-reference/endpoint/get_donation",
-        "api-reference/endpoint/create_donation"
+        "api-reference/endpoint/create_donation",
+        "api-reference/endpoint/create_donation_plan",
+        "api-reference/endpoint/get_donation_plan"
       ]
     }
   ]
