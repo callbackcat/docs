@@ -19,17 +19,49 @@
     }
   ],
   "paths": {
-    "/plants": {
+    "/api/donations/": {
       "get": {
-        "description": "Returnsss all plants from the system that the user has access to",
+        "description": "Retrieves a list of donations made by the authenticated user, excluding deleted donations",
         "parameters": [
           {
-            "name": "limit",
+            "name": "donate_at__gte",
             "in": "query",
-            "description": "The maximum number of results to return",
+            "description": "Donation date",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string",
+              "format": "$date"
+            }
+          },
+          {
+            "name": "ordering",
+            "in": "query",
+            "description": "Which field to use when ordering the results",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "Number of results to return per page",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "A search term",
+            "schema": {
+              "type": "string"
             }
           }
         ],
