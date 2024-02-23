@@ -568,40 +568,144 @@
             "description": ""
           }
         }
-      },
-      "put": {
-        "operationId": "donations_update",
-        "description": "Allows an authenticated user to update an existing donation record.",
-        "summary": "Update a Donation",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "integer"
-            },
-            "description": "A unique integer value identifying this Донация.",
-            "required": true
-          }
-        ],
+      }
+    },
+    "/api/auth/login/": {
+      "post": {
+        "operationId": "auth_login_create",
+        "description": "Authenticates a user with a username and password. Handles email and phone number formats for usernames.",
+        "summary": "User Login",
         "tags": [
-          "Donation Management"
+          "Authentication"
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Donation"
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "username",
+                  "password"
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/auth/registration/": {
+      "post": {
+        "operationId": "auth_registration_create",
+        "description": "Registers a new user, either through email or phone number.",
+        "summary": "User Registration",
+        "tags": [
+          "Account Creation and Confirmation"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Registration"
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/Donation"
+                "$ref": "#/components/schemas/Registration"
               }
             },
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Donation"
+                "$ref": "#/components/schemas/Registration"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user_id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/auth/confirm_email_reg/": {
+      "post": {
+        "operationId": "auth_confirm_email_reg_create",
+        "description": "Confirms a user's email address during the registration process.",
+        "summary": "Confirm Email on Registration",
+        "tags": [
+          "Account Creation and Confirmation"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmailVerificationSerialzier"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/EmailVerificationSerialzier"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/EmailVerificationSerialzier"
               }
             }
           },
@@ -616,57 +720,50 @@
           },
           {
             "basicAuth": []
-          }
+          },
+          {}
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Donation"
+                  "$ref": "#/components/schemas/User"
                 }
               }
             },
             "description": ""
           }
         }
-      },
-      "patch": {
-        "operationId": "donations_partial_update",
-        "description": "Allows an authenticated user to update an existing donation record.",
-        "summary": "Update a Donation",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "integer"
-            },
-            "description": "A unique integer value identifying this Донация.",
-            "required": true
-          }
-        ],
+      }
+    },
+    "/api/auth/set_password/": {
+      "post": {
+        "operationId": "auth_set_password_create",
+        "description": "Allows a user to set a new password, usually as part of a password reset process.",
+        "summary": "Set Password",
         "tags": [
-          "Donation Management"
+          "Account Recovery"
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PatchedDonation"
+                "$ref": "#/components/schemas/ResetPassword"
               }
             },
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/PatchedDonation"
+                "$ref": "#/components/schemas/ResetPassword"
               }
             },
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/PatchedDonation"
+                "$ref": "#/components/schemas/ResetPassword"
               }
             }
-          }
+          },
+          "required": true
         },
         "security": [
           {
@@ -677,53 +774,19 @@
           },
           {
             "basicAuth": []
-          }
+          },
+          {}
         ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Donation"
+                  "$ref": "#/components/schemas/User"
                 }
               }
             },
             "description": ""
-          }
-        }
-      },
-      "delete": {
-        "operationId": "donations_destroy",
-        "description": "Soft deletes a donation made by the authenticated user.",
-        "summary": "Delete a Donation",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "integer"
-            },
-            "description": "A unique integer value identifying this Донация.",
-            "required": true
-          }
-        ],
-        "tags": [
-          "Donation Management"
-        ],
-        "security": [
-          {
-            "tokenAuth": []
-          },
-          {
-            "cookieAuth": []
-          },
-          {
-            "basicAuth": []
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No response body"
           }
         }
       }

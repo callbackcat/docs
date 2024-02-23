@@ -43,7 +43,11 @@
         "api-reference/endpoint/get_donation_plan",
         "api-reference/endpoint/get_blood_station",
         "api-reference/endpoint/get_events",
-        "api-reference/endpoint/get_donation_id"
+        "api-reference/endpoint/get_donation_id",
+        "api-reference/endpoint/create_login",
+        "api-reference/endpoint/create_registration",
+        "api-reference/endpoint/create_confirm_email_reg",
+        "api-reference/endpoint/create_set_password"
       ]
     }
   ]
