@@ -154,6 +154,128 @@
           }
         }
       }
+    },
+    "/api/donation_plan/": {
+      "get": {
+        "operationId": "donation_plan_list",
+        "description": "Retrieves a list of donation plans created by the authenticated user, excluding aborted plans.",
+        "summary": "List Donation Plans",
+        "parameters": [
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": [
+          "Donation Plan Management"
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedDonationPlanList"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "operationId": "donation_plan_create",
+        "description": "Allows an authenticated user to create a new donation plan.",
+        "summary": "Create a Donation Plan",
+        "tags": [
+          "Donation Plan Management"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DonationPlan"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/DonationPlan"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/DonationPlan"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DonationPlan"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
     }
   },
   "components": {
