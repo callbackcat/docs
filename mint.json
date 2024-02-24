@@ -51,7 +51,6 @@
         "api-reference/endpoint/create_auth_me",
         "api-reference/endpoint/get_regions",
         "api-reference/endpoint/get_countries",
-        "api-reference/endpoint/get_countries",
         "api-reference/endpoint/get_cities",
         "api-reference/endpoint/get_media",
         "api-reference/endpoint/get_special_projects",
