@@ -1096,6 +1096,36 @@
           }
         }
       }
+    },
+    "/api/donations/is-exists/": {
+      "get": {
+        "tags": [
+          "donation-controller"
+        ],
+        "operationId": "checkDonationExistsOnDate",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/hal+json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
